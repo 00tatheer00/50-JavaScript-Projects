@@ -1,0 +1,185 @@
+ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap');
+
+ :root {
+     --primary-color: #0ff;
+     --secondary-color: #f0f;
+     --bg-color: #111122;
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     background-color: var(--bg-color);
+     overflow: hidden;
+     font-family: 'Orbitron', sans-serif;
+     min-height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     perspective: 1000px;
+ }
+
+ #particles-js {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     z-index: 1;
+ }
+
+ .clock-container {
+     position: relative;
+     z-index: 2;
+     text-align: center;
+     padding: 2rem 3rem;
+     border-radius: 20px;
+     background: rgba(0, 0, 0, 0.3);
+     backdrop-filter: blur(10px);
+     box-shadow: 0 0 30px rgba(0, 255, 255, 0.2),
+         0 0 60px rgba(255, 0, 255, 0.1),
+         inset 0 0 10px rgba(255, 255, 255, 0.1);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     transform-style: preserve-3d;
+     animation: float 6s ease-in-out infinite;
+ }
+
+ .clock {
+     font-size: 5rem;
+     font-weight: 700;
+     color: var(--primary-color);
+     text-shadow: 0 0 10px var(--primary-color),
+         0 0 20px var(--primary-color),
+         0 0 40px var(--primary-color);
+     letter-spacing: 5px;
+     margin-bottom: 1rem;
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .colon {
+     animation: pulse 1s infinite;
+     margin: 0 0.5rem;
+     position: relative;
+     top: -0.2em;
+ }
+
+ .date {
+     font-family: 'Rajdhani', sans-serif;
+     font-size: 1.5rem;
+     color: white;
+     text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+     letter-spacing: 3px;
+     margin-bottom: 1.5rem;
+ }
+
+ .time-format {
+     display: flex;
+     justify-content: center;
+     gap: 1rem;
+     margin-top: 1.5rem;
+ }
+
+ .format-btn {
+     background: rgba(255, 255, 255, 0.1);
+     color: white;
+     border: none;
+     padding: 0.5rem 1rem;
+     border-radius: 50px;
+     cursor: pointer;
+     font-family: 'Rajdhani', sans-serif;
+     font-weight: 700;
+     letter-spacing: 1px;
+     transition: all 0.3s ease;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .format-btn:hover {
+     background: rgba(255, 255, 255, 0.2);
+ }
+
+ .format-btn.active {
+     background: var(--primary-color);
+     color: black;
+     box-shadow: 0 0 10px var(--primary-color),
+         0 0 20px var(--primary-color);
+ }
+
+ .glow-effect {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+     filter: blur(20px);
+     opacity: 0.3;
+     z-index: -1;
+     animation: colorShift 10s infinite alternate;
+ }
+
+ .clock::before {
+     content: '';
+     position: absolute;
+     top: -5px;
+     left: -5px;
+     right: -5px;
+     bottom: -5px;
+     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+     z-index: -2;
+     filter: blur(20px);
+     opacity: 0.5;
+     border-radius: 10px;
+ }
+
+ @keyframes pulse {
+
+     0%,
+     100% {
+         opacity: 1;
+     }
+
+     50% {
+         opacity: 0.3;
+     }
+ }
+
+ @keyframes float {
+
+     0%,
+     100% {
+         transform: translateY(0) rotateX(5deg) rotateY(5deg);
+     }
+
+     50% {
+         transform: translateY(-20px) rotateX(-5deg) rotateY(-5deg);
+     }
+ }
+
+ @keyframes colorShift {
+     0% {
+         filter: hue-rotate(0deg);
+     }
+
+     100% {
+         filter: hue-rotate(360deg);
+     }
+ }
+
+ @media (max-width: 768px) {
+     .clock {
+         font-size: 3rem;
+     }
+
+     .date {
+         font-size: 1rem;
+     }
+
+     .clock-container {
+         padding: 1.5rem;
+     }
+ }
