@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Professional Calculator</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/themes.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body class="theme-light">
+    <div class="calculator">
+        <div class="display-container">
+            <div class="history-display"></div>
+            <div class="main-display">0</div>
+            <div class="memory-indicator"></div>
+        </div>
+        
+        <div class="keypad">
+            <div class="function-buttons">
+                <button class="btn btn-function btn-memory btn-mc">MC</button>
+                <button class="btn btn-function btn-memory btn-mr">MR</button>
+                <button class="btn btn-function btn-memory btn-ms">MS</button>
+                <button class="btn btn-function btn-memory btn-mplus">M+</button>
+                <button class="btn btn-function btn-clear btn-clear-all">AC</button>
+                <button class="btn btn-function btn-clear btn-clear-entry">CE</button>
+                <button class="btn btn-function btn-history btn-history-prev">↑</button>
+                <button class="btn btn-function btn-history btn-history-next">↓</button>
+            </div>
+            
+            <div class="scientific-buttons">
+                <button class="btn btn-sci btn-sin">sin</button>
+                <button class="btn btn-sci btn-cos">cos</button>
+                <button class="btn btn-sci btn-tan">tan</button>
+                <button class="btn btn-sci btn-ln">ln</button>
+                <button class="btn btn-sci btn-log">log</button>
+                <button class="btn btn-sci btn-fact">x!</button>
+                <button class="btn btn-sci btn-pi">π</button>
+                <button class="btn btn-sci btn-e">e</button>
+                <button class="btn btn-sci btn-sqrt">√</button>
+                <button class="btn btn-sci btn-power">x^y</button>
+                <button class="btn btn-sci btn-exp">EXP</button>
+                <button class="btn btn-sci btn-mod">mod</button>
+            </div>
+            
+            <div class="main-buttons">
+                <button class="btn btn-number btn-7">7</button>
+                <button class="btn btn-number btn-8">8</button>
+                <button class="btn btn-number btn-9">9</button>
+                <button class="btn btn-operator btn-divide">/</button>
+                
+                <button class="btn btn-number btn-4">4</button>
+                <button class="btn btn-number btn-5">5</button>
+                <button class="btn btn-number btn-6">6</button>
+                <button class="btn btn-operator btn-multiply">×</button>
+                
+                <button class="btn btn-number btn-1">1</button>
+                <button class="btn btn-number btn-2">2</button>
+                <button class="btn btn-number btn-3">3</button>
+                <button class="btn btn-operator btn-subtract">-</button>
+                
+                <button class="btn btn-number btn-0">0</button>
+                <button class="btn btn-number btn-dot">.</button>
+                <button class="btn btn-equals">=</button>
+                <button class="btn btn-operator btn-add">+</button>
+            </div>
+        </div>
+        
+        <div class="theme-switcher">
+            <button class="btn-theme btn-theme-light">Light</button>
+            <button class="btn-theme btn-theme-dark">Dark</button>
+            <button class="btn-theme btn-theme-pro">Pro</button>
+        </div>
+    </div>
+
+    <script src="scripts/main.js" type="module"></script>
+</body>
+</html>

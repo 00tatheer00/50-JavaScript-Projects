@@ -1,0 +1,43 @@
+@media (max-width: 400px) {
+    .calculator {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .function-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .scientific-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .btn {
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+    
+    .btn-function {
+        font-size: 0.8rem;
+        padding: 8px 0;
+    }
+    
+    .btn-sci {
+        font-size: 0.8rem;
+        padding: 8px 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .calculator {
+        width: 400px;
+    }
+    
+    .display-container {
+        min-height: 100px;
+    }
+    
+    .main-display {
+        font-size: 2.5rem;
+    }
+}

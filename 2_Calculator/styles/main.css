@@ -1,0 +1,188 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2980b9;
+    --background-color: #f5f5f5;
+    --display-color: #ffffff;
+    --text-color: #333333;
+    --button-color: #e0e0e0;
+    --button-hover: #d0d0d0;
+    --operator-color: #f39c12;
+    --operator-hover: #e67e22;
+    --equals-color: #2ecc71;
+    --equals-hover: #27ae60;
+    --function-color: #95a5a6;
+    --function-hover: #7f8c8d;
+    --sci-color: #9b59b6;
+    --sci-hover: #8e44ad;
+    --error-color: #e74c3c;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.calculator {
+    width: 320px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    transition: background-color 0.3s;
+}
+
+.display-container {
+    background-color: var(--display-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: right;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    word-break: break-all;
+}
+
+.history-display {
+    font-size: 0.9rem;
+    color: #777;
+    min-height: 18px;
+}
+
+.main-display {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.memory-indicator {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    min-height: 16px;
+}
+
+.keypad {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+}
+
+.function-buttons, .scientific-buttons, .main-buttons {
+    display: grid;
+    gap: 8px;
+}
+
+.function-buttons {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.scientific-buttons {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.main-buttons {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.btn {
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 15px 0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: var(--button-color);
+    color: var(--text-color);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-number {
+    background-color: var(--button-color);
+}
+
+.btn-number:hover {
+    background-color: var(--button-hover);
+}
+
+.btn-operator {
+    background-color: var(--operator-color);
+    color: white;
+}
+
+.btn-operator:hover {
+    background-color: var(--operator-hover);
+}
+
+.btn-equals {
+    background-color: var(--equals-color);
+    color: white;
+}
+
+.btn-equals:hover {
+    background-color: var(--equals-hover);
+}
+
+.btn-function {
+    background-color: var(--function-color);
+    color: white;
+    font-size: 0.9rem;
+    padding: 10px 0;
+}
+
+.btn-function:hover {
+    background-color: var(--function-hover);
+}
+
+.btn-sci {
+    background-color: var(--sci-color);
+    color: white;
+    font-size: 0.9rem;
+    padding: 10px 0;
+}
+
+.btn-sci:hover {
+    background-color: var(--sci-hover);
+}
+
+.theme-switcher {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn-theme {
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.8rem;
+    background-color: var(--button-color);
+    transition: all 0.2s;
+}
+
+.btn-theme:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+    color: var(--error-color);
+}
