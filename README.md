@@ -1,4 +1,4 @@
-# 🌿 50 JavaScript Mini Projects
+# 🌿 50 JavaScript Projects
 
 Welcome to **50 JavaScript Mini Projects** – a meticulously curated collection of **mini-projects designed to refine, test, and showcase your JavaScript skills practically and elegantly.**
 
