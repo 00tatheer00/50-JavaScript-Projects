@@ -30,7 +30,7 @@ Each project here is designed for **2–5 hours** of focused practice, perfect f
 
 | # | Project Name | Live Demo |
 |---|-------------|-----------|
-| 1 | Digital Clock | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/1_Digital%20Clock/) |
+| 1 | Digital Clock | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/1_Digital_Clock/) |
 | 2 | Calculator | Coming Soon |
 | 3 | Todo App | Coming Soon |
 | 4 | Pomodoro Timer | Coming Soon |
