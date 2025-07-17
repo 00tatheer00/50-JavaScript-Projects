@@ -3,6 +3,7 @@
 Welcome to **50 JavaScript Mini Projects** – a meticulously curated collection of **mini-projects designed to refine, test, and showcase your JavaScript skills practically and elegantly.**
 
 This repository will help you:
+
 ✅ Strengthen **DOM manipulation** skills.  
 ✅ Master **event-driven programming**.  
 ✅ Build **real-world utilities and games**.  
