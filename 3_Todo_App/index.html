@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Todo Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/themes/dark.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <h1 class="app-title">Advanced Todo App by Tatheer</h1>
+                <button id="theme-toggle" class="icon-button">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="header-right">
+                <button id="add-task-btn" class="primary-button">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <button class="menu-item active" data-view="all">
+                    <i class="fas fa-tasks"></i> All Tasks
+                </button>
+                <button class="menu-item" data-view="today">
+                    <i class="fas fa-calendar-day"></i> Today
+                </button>
+                <button class="menu-item" data-view="upcoming">
+                    <i class="fas fa-calendar-week"></i> Upcoming
+                </button>
+                <button class="menu-item" data-view="important">
+                    <i class="fas fa-star"></i> Important
+                </button>
+                <button class="menu-item" data-view="completed">
+                    <i class="fas fa-check-circle"></i> Completed
+                </button>
+            </div>
+
+            <div class="category-section">
+                <div class="section-header">
+                    <h3>Categories</h3>
+                    <button id="add-category-btn" class="icon-button small">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <ul id="category-list" class="category-list">
+                    <!-- Categories will be added dynamically -->
+                </ul>
+            </div>
+
+            <div class="tag-section">
+                <div class="section-header">
+                    <h3>Tags</h3>
+                    <button id="add-tag-btn" class="icon-button small">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div id="tag-cloud" class="tag-cloud">
+                    <!-- Tags will be added dynamically -->
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div class="task-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="task-search" placeholder="Search tasks...">
+                </div>
+                <div class="sort-options">
+                    <select id="sort-by">
+                        <option value="dueDate">Due Date</option>
+                        <option value="priority">Priority</option>
+                        <option value="createdAt">Created At</option>
+                        <option value="alphabetical">Alphabetical</option>
+                    </select>
+                </div>
+                <div class="filter-options">
+                    <select id="filter-by">
+                        <option value="all">All</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="task-list" class="task-list">
+                <!-- Tasks will be added dynamically -->
+            </div>
+        </main>
+
+        <!-- Task Editor Modal -->
+        <div id="task-editor-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Add New Task</h2>
+                    <button id="close-modal" class="icon-button">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="task-form">
+                        <div class="form-group">
+                            <label for="task-title">Title</label>
+                            <input type="text" id="task-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <div id="editor-container"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="task-due-date">Due Date</label>
+                                <input type="datetime-local" id="task-due-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="task-priority">Priority</label>
+                                <select id="task-priority">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="task-category">Category</label>
+                                <select id="task-category">
+                                    <option value="">None</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Tags</label>
+                                <div id="task-tags" class="tag-input"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="task-important"> Mark as important
+                            </label>
+                            <label>
+                                <input type="checkbox" id="task-completed"> Mark as completed
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="cancel-task" class="secondary-button">Cancel</button>
+                            <button type="submit" id="save-task" class="primary-button">Save Task</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category/Tag Editor Modal -->
+        <div id="category-modal" class="modal">
+            <div class="modal-content small">
+                <div class="modal-header">
+                    <h2 id="category-modal-title">Add New Category</h2>
+                    <button id="close-category-modal" class="icon-button">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="category-form">
+                        <div class="form-group">
+                            <label for="category-name">Name</label>
+                            <input type="text" id="category-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category-color">Color</label>
+                            <input type="color" id="category-color" value="#3a86ff">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="cancel-category" class="secondary-button">Cancel</button>
+                            <button type="submit" class="primary-button">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    
+    <!-- Include our scripts -->
+    <script src="./scripts/storage.js" type="module"></script>
+    <script src="./scripts/editor.js" type="module"></script>
+    <script src="./scripts/dragdrop.js" type="module"></script>
+    <script src="./scripts/notifications.js" type="module"></script>
+    <script src="./scripts/ui.js" type="module"></script>
+    <script src="./scripts/app.js" type="module"></script>
+</body>
+</html>

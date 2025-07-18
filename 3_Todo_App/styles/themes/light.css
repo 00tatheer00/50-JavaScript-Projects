@@ -1,0 +1,124 @@
+/* Light Theme - Default styles are already light, so this file mainly resets dark theme changes */
+
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.app-header {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    background-color: white;
+    border-right-color: #e9ecef;
+}
+
+.content-area {
+    background-color: #f5f7fa;
+}
+
+.menu-item {
+    color: #6c757d;
+}
+
+.menu-item:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.menu-item.active {
+    background-color: rgba(58, 134, 255, 0.1);
+    color: #3a86ff;
+}
+
+.section-header h3 {
+    color: #6c757d;
+}
+
+.category-item:hover {
+    background-color: #e9ecef;
+}
+
+.task-card {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.task-description {
+    color: #6c757d;
+}
+
+.search-box input,
+.sort-options select,
+.filter-options select,
+.form-group input[type="text"],
+.form-group input[type="datetime-local"],
+.form-group select,
+.form-group textarea,
+.tag-input {
+    background-color: white;
+    border-color: #e9ecef;
+    color: #212529;
+}
+
+.search-box input:focus,
+.sort-options select:focus,
+.filter-options select:focus,
+.form-group input[type="text"]:focus,
+.form-group input[type="datetime-local"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+}
+
+.modal-content {
+    background-color: white;
+}
+
+.modal-header {
+    border-bottom-color: #e9ecef;
+}
+
+.secondary-button {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.secondary-button:hover {
+    background-color: #dee2e6;
+}
+
+.icon-button:hover {
+    background-color: #e9ecef;
+}
+
+.tag-item, .task-tag {
+    background-color: #e9ecef;
+}
+
+.tag-input .tag-item {
+    background-color: #e9ecef;
+}
+
+.empty-state {
+    color: #6c757d;
+}
+
+/* Reset any dark theme specific styles that might have been set */
+.ql-snow .ql-stroke {
+    stroke: #495057;
+}
+
+.ql-snow .ql-fill {
+    fill: #495057;
+}
+
+.ql-snow .ql-picker {
+    color: #495057;
+}
