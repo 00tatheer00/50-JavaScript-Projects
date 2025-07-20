@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Pomodoro Timer</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Pomodoro Timer</h1>
+            <div class="mode-toggle">
+                <span>Light</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span>Dark</span>
+            </div>
+        </header>
+
+        <div class="timer-container">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
+                <button class="mode-btn" data-mode="short-break">Short Break</button>
+                <button class="mode-btn" data-mode="long-break">Long Break</button>
+            </div>
+
+            <div class="timer-display">
+                <span id="minutes">25</span>:<span id="seconds">00</span>
+            </div>
+
+            <div class="timer-controls">
+                <button id="start-btn" class="control-btn">
+                    <i class="fas fa-play"></i> Start
+                </button>
+                <button id="pause-btn" class="control-btn" disabled>
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button id="reset-btn" class="control-btn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </div>
+
+        <div class="settings-panel">
+            <h2>Settings</h2>
+            <div class="setting">
+                <label for="pomodoro-duration">Pomodoro (minutes):</label>
+                <input type="number" id="pomodoro-duration" min="1" max="60" value="25">
+            </div>
+            <div class="setting">
+                <label for="short-break-duration">Short Break (minutes):</label>
+                <input type="number" id="short-break-duration" min="1" max="30" value="5">
+            </div>
+            <div class="setting">
+                <label for="long-break-duration">Long Break (minutes):</label>
+                <input type="number" id="long-break-duration" min="1" max="60" value="15">
+            </div>
+            <div class="setting">
+                <label for="auto-start">Auto-start next timer:</label>
+                <input type="checkbox" id="auto-start" checked>
+            </div>
+            <div class="setting">
+                <label for="sound-alert">Sound alert:</label>
+                <select id="sound-alert">
+                    <option value="bell">Bell</option>
+                    <option value="chime">Chime</option>
+                    <option value="ding">Ding</option>
+                    <option value="none">None</option>
+                </select>
+            </div>
+            <button id="save-settings" class="save-btn">Save Settings</button>
+        </div>
+
+        <div class="task-manager">
+            <h2>Tasks</h2>
+            <div class="task-input">
+                <input type="text" id="new-task" placeholder="Enter a new task...">
+                <button id="add-task"><i class="fas fa-plus"></i> Add</button>
+            </div>
+            <ul id="task-list"></ul>
+            <div class="task-stats">
+                <p>Pomodoros completed today: <span id="pomodoros-completed">0</span></p>
+            </div>
+        </div>
+
+        <audio id="bell-sound"
+            src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
+        <audio id="chime-sound"
+            src="https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3"></audio>
+        <audio id="ding-sound"
+            src="https://assets.mixkit.co/sfx/preview/mixkit-melodic-harp-notification-2320.mp3"></audio>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
