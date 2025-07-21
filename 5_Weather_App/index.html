@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherSphere Pro | Enterprise Weather Dashboard</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="weather-app">
+        <!-- Header with search -->
+        <header class="app-header">
+            <div class="branding">
+                <h1>WeatherSphere Pro</h1>
+                <p>Enterprise-grade weather intelligence</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="location-input" placeholder="Search city, zip code, or coordinates...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <button id="current-location-btn" title="Use current location"><i
+                        class="fas fa-location-arrow"></i></button>
+            </div>
+        </header>
+
+        <!-- Main dashboard -->
+        <main class="dashboard">
+            <!-- Current weather -->
+            <section class="current-weather card">
+                <div class="location-info">
+                    <h2 id="current-city">New York, US</h2>
+                    <p id="current-date">Monday, June 12, 2023</p>
+                    <p id="current-description">Partly Cloudy</p>
+                </div>
+                <div class="weather-main">
+                    <div class="temperature">
+                        <img id="current-icon" src="assets/icons/cloudy.svg" alt="Weather icon">
+                        <span id="current-temp">72</span>
+                        <span class="unit">°F</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail">
+                            <i class="fas fa-wind"></i>
+                            <span id="wind-speed">12</span> mph
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-tint"></i>
+                            <span id="humidity">65</span>%
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-compress-alt"></i>
+                            <span id="pressure">1012</span> hPa
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hourly forecast -->
+            <section class="hourly-forecast card">
+                <h3>Hourly Forecast</h3>
+                <div class="hourly-container" id="hourly-container">
+                    <!-- Filled by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Daily forecast -->
+            <section class="daily-forecast card">
+                <h3>5-Day Forecast</h3>
+                <div class="daily-container" id="daily-container">
+                    <!-- Filled by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Additional weather data -->
+            <section class="weather-extras">
+                <div class="extra-card card">
+                    <h4>UV Index</h4>
+                    <div class="uv-index" id="uv-index">5</div>
+                    <p class="uv-risk">Moderate</p>
+                </div>
+                <div class="extra-card card">
+                    <h4>Visibility</h4>
+                    <div class="visibility-value" id="visibility">10</div>
+                    <p>miles</p>
+                </div>
+                <div class="extra-card card">
+                    <h4>Sunrise & Sunset</h4>
+                    <div class="sun-times">
+                        <div>
+                            <i class="fas fa-sunrise"></i>
+                            <span id="sunrise">6:45 AM</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-sunset"></i>
+                            <span id="sunset">7:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Data provided by OpenWeatherMap</p>
+            <p>© 2023 WeatherSphere Pro. All rights reserved.</p>
+            <div class="unit-toggle">
+                <button class="active" id="unit-f">°F</button>
+                <button id="unit-c">°C</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
