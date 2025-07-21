@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProQR - Advanced QR Code Generator</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-qrcode"></i> STH ProQR Generator</h1>
+            <p>Create professional QR codes with advanced customization</p>
+        </header>
+
+        <main class="app-main">
+            <div class="generator-container">
+                <section class="controls-section">
+                    <div class="control-group">
+                        <label for="qr-content">Content</label>
+                        <textarea id="qr-content" placeholder="Enter URL, text, or other content"></textarea>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="qr-size">Size</label>
+                        <input type="range" id="qr-size" min="100" max="1000" value="300">
+                        <span id="size-value">300px</span>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="qr-error-correction">Error Correction</label>
+                        <select id="qr-error-correction">
+                            <option value="L">Low (7%)</option>
+                            <option value="M" selected>Medium (15%)</option>
+                            <option value="Q">Quartile (25%)</option>
+                            <option value="H">High (30%)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Colors</label>
+                        <div class="color-options">
+                            <div>
+                                <label for="qr-fg-color">Foreground</label>
+                                <input type="color" id="qr-fg-color" value="#000000">
+                            </div>
+                            <div>
+                                <label for="qr-bg-color">Background</label>
+                                <input type="color" id="qr-bg-color" value="#ffffff">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="qr-gradient">Gradient</label>
+                        <select id="qr-gradient">
+                            <option value="none">None</option>
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>
+                        </select>
+                        <div id="gradient-colors" class="hidden">
+                            <input type="color" id="qr-gradient-color1" value="#ff0000">
+                            <input type="color" id="qr-gradient-color2" value="#0000ff">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="qr-dots">Dot Style</label>
+                        <select id="qr-dots">
+                            <option value="square">Square</option>
+                            <option value="rounded">Rounded</option>
+                            <option value="dot">Dots</option>
+                            <option value="extra-rounded">Extra Rounded</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="qr-logo">Add Logo</label>
+                        <select id="qr-logo">
+                            <option value="none">None</option>
+                            <option value="custom">Custom Logo</option>
+                            <option value="sample1">Sample Logo 1</option>
+                            <option value="sample2">Sample Logo 2</option>
+                        </select>
+                        <input type="file" id="logo-upload" accept="image/*" class="hidden">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="qr-margin">Margin</label>
+                        <input type="range" id="qr-margin" min="0" max="50" value="4">
+                        <span id="margin-value">4</span>
+                    </div>
+
+                    <button id="generate-btn" class="btn-primary">Generate QR Code</button>
+                    <button id="save-btn" class="btn-secondary" disabled>Save QR Code</button>
+                </section>
+
+                <section class="preview-section">
+                    <div class="qr-preview-container">
+                        <canvas id="qr-canvas"></canvas>
+                        <div id="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                            <p>Your QR code will appear here</p>
+                        </div>
+                    </div>
+                    <div class="download-options">
+                        <button id="download-png" class="btn-download" disabled>
+                            <i class="fas fa-download"></i> PNG
+                        </button>
+                        <button id="download-svg" class="btn-download" disabled>
+                            <i class="fas fa-download"></i> SVG
+                        </button>
+                        <button id="download-jpg" class="btn-download" disabled>
+                            <i class="fas fa-download"></i> JPG
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <section class="history-section hidden">
+                <h2><i class="fas fa-history"></i> Generation History</h2>
+                <div id="history-list" class="history-grid"></div>
+                <button id="clear-history" class="btn-warning">Clear History</button>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>ProQR Generator Tatheer &copy; 2023 | Advanced QR Code Creation Tool</p>
+        </footer>
+    </div>
+
+    <!-- Libraries first -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas2image@1.0.5/canvas2image.min.js"></script>
+
+    <!-- Then your scripts -->
+    <!-- Change your script tags to this: -->
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/storage.js"></script>
+    <script type="module" src="js/qrlib.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
