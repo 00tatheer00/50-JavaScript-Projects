@@ -3,7 +3,7 @@ const config = {
     apiKey: '2b59073ec277d4fc62ad67dcdd9ad65b',
     baseUrl: 'https://api.openweathermap.org/data/2.5/',
     iconBaseUrl: 'https://openweathermap.org/img/wn/',
-    units: 'imperial' // Default to Fahrenheit
+    units: 'metric' // Default to Celsius
 };
 
 // DOM Elements
@@ -22,18 +22,33 @@ const elements = {
     hourlyContainer: document.getElementById('hourly-container'),
     dailyContainer: document.getElementById('daily-container'),
     uvIndex: document.getElementById('uv-index'),
+    uvRisk: document.getElementById('uv-risk'),
     visibility: document.getElementById('visibility'),
+    visibilityDesc: document.getElementById('visibility-desc'),
     sunrise: document.getElementById('sunrise'),
     sunset: document.getElementById('sunset'),
+    lastUpdated: document.getElementById('last-updated'),
     loadingOverlay: document.getElementById('loading-overlay'),
     unitF: document.getElementById('unit-f'),
-    unitC: document.getElementById('unit-c')
+    unitC: document.getElementById('unit-c'),
+    progressBar: document.querySelector('.uv-progress .progress-bar')
 };
 
-// Event Listeners
-document.addEventListener('DOMContentLoaded', initializeApp);
+// App State
+let appState = {
+    currentData: null,
+    forecastData: null,
+    units: config.units,
+    lastLocation: 'New York'
+};
 
-function initializeApp() {
+// Initialize the app
+document.addEventListener('DOMContentLoaded', () => {
+    setupEventListeners();
+    fetchWeatherByLocation(appState.lastLocation);
+});
+
+function setupEventListeners() {
     elements.searchBtn.addEventListener('click', searchLocation);
     elements.currentLocationBtn.addEventListener('click', getCurrentLocationWeather);
     elements.locationInput.addEventListener('keypress', (e) => {
@@ -41,30 +56,27 @@ function initializeApp() {
     });
     elements.unitF.addEventListener('click', () => switchUnits('imperial'));
     elements.unitC.addEventListener('click', () => switchUnits('metric'));
-    
-    // Load weather for default location
-    fetchWeatherByLocation('New York');
 }
 
-// Main weather fetching function
 async function fetchWeatherByLocation(location) {
     showLoading(true);
     try {
-        // First get coordinates for the location
-        const geoResponse = await fetch(
-            `${config.baseUrl}weather?q=${encodeURIComponent(location)}&appid=${config.apiKey}`
+        // Fetch current weather
+        const currentResponse = await fetch(
+            `${config.baseUrl}weather?q=${encodeURIComponent(location)}&units=${appState.units}&appid=${config.apiKey}`
         );
         
-        if (!geoResponse.ok) {
-            throw new Error(await geoResponse.text());
+        if (!currentResponse.ok) {
+            throw new Error(await currentResponse.text());
         }
         
-        const geoData = await geoResponse.json();
+        const currentData = await currentResponse.json();
+        appState.currentData = currentData;
+        appState.lastLocation = `${currentData.name},${currentData.sys.country}`;
         
-        // Then get full forecast data
+        // Fetch 5-day forecast
         const forecastResponse = await fetch(
-            `${config.baseUrl}onecall?lat=${geoData.coord.lat}&lon=${geoData.coord.lon}` +
-            `&exclude=minutely,alerts&units=${config.units}&appid=${config.apiKey}`
+            `${config.baseUrl}forecast?q=${encodeURIComponent(location)}&units=${appState.units}&appid=${config.apiKey}`
         );
         
         if (!forecastResponse.ok) {
@@ -72,134 +84,221 @@ async function fetchWeatherByLocation(location) {
         }
         
         const forecastData = await forecastResponse.json();
+        appState.forecastData = forecastData;
         
-        // Update UI with both sets of data
-        updateCurrentWeather(geoData, forecastData.current);
-        updateForecast(forecastData);
+        // Update UI
+        updateCurrentWeather();
+        updateForecast();
+        updateLastUpdated();
         
     } catch (error) {
         console.error('Error fetching weather data:', error);
-        alert('Failed to fetch weather data. Please check the location and try again.');
+        showError('Failed to fetch weather data. Please check the location and try again.');
     } finally {
         showLoading(false);
     }
 }
 
-// Update current weather display
-function updateCurrentWeather(geoData, currentData) {
-    elements.currentCity.textContent = `${geoData.name}, ${geoData.sys.country}`;
-    elements.currentDescription.textContent = currentData.weather[0].description;
-    elements.currentTemp.textContent = Math.round(currentData.temp);
-    elements.windSpeed.textContent = Math.round(currentData.wind_speed);
-    elements.humidity.textContent = currentData.humidity;
-    elements.pressure.textContent = currentData.pressure;
+function updateCurrentWeather() {
+    const data = appState.currentData;
+    const weather = data.weather[0];
     
-    // Update weather icon
-    elements.currentIcon.src = `${config.iconBaseUrl}${currentData.weather[0].icon}@2x.png`;
-    elements.currentIcon.alt = currentData.weather[0].description;
+    // Location and date
+    elements.currentCity.textContent = `${data.name}, ${data.sys.country}`;
+    elements.currentDate.textContent = formatDate(new Date());
+    elements.currentDescription.textContent = weather.description;
     
-    // Update date
-    const now = new Date();
-    elements.currentDate.textContent = formatDate(now);
+    // Temperature and icon
+    elements.currentTemp.textContent = Math.round(data.main.temp);
+    elements.currentIcon.src = `${config.iconBaseUrl}${weather.icon}@2x.png`;
+    elements.currentIcon.alt = weather.description;
+    
+    // Weather details
+    elements.windSpeed.textContent = Math.round(data.wind.speed);
+    elements.humidity.textContent = data.main.humidity;
+    elements.pressure.textContent = data.main.pressure;
+    
+    // Set dynamic background based on weather
+    setWeatherTheme(weather.main);
 }
 
-// Update forecast sections
-function updateForecast(data) {
-    updateHourlyForecast(data.hourly);
-    updateDailyForecast(data.daily);
-    updateAdditionalData(data.current);
+function updateForecast() {
+    const forecast = appState.forecastData;
+    updateHourlyForecast(forecast.list);
+    updateDailyForecast(forecast.list);
+    updateAdditionalData();
 }
 
 function updateHourlyForecast(hourlyData) {
     elements.hourlyContainer.innerHTML = '';
     
-    // Show next 12 hours
-    for (let i = 0; i < 12; i++) {
+    // Get next 8 hours (3-hour intervals)
+    const now = new Date();
+    const currentHour = now.getHours();
+    
+    for (let i = 0; i < 8; i++) {
         const hourData = hourlyData[i];
         const hourTime = new Date(hourData.dt * 1000);
         
         const hourItem = document.createElement('div');
-        hourItem.className = 'hourly-item';
+        hourItem.className = 'hourly-item animate__animated animate__fadeIn';
+        hourItem.style.animationDelay = `${i * 0.1}s`;
         hourItem.innerHTML = `
-            <div>${formatHour(hourTime.getHours())}</div>
-            <img src="${config.iconBaseUrl}${hourData.weather[0].icon}.png" alt="${hourData.weather[0].description}">
-            <div>${Math.round(hourData.temp)}°</div>
+            <div class="hour">${formatHour(hourTime.getHours())}</div>
+            <img src="${config.iconBaseUrl}${hourData.weather[0].icon}.png" 
+                 alt="${hourData.weather[0].description}"
+                 class="animate__animated animate__pulse">
+            <div class="temp">${Math.round(hourData.main.temp)}°</div>
         `;
         elements.hourlyContainer.appendChild(hourItem);
     }
 }
 
-function updateDailyForecast(dailyData) {
+function updateDailyForecast(forecastList) {
     elements.dailyContainer.innerHTML = '';
     
-    // Skip today (index 0) since we show that in current weather
-    for (let i = 1; i < Math.min(dailyData.length, 6); i++) {
-        const dayData = dailyData[i];
-        const dayDate = new Date(dayData.dt * 1000);
+    // Group by day
+    const dailyForecasts = {};
+    forecastList.forEach(item => {
+        const date = new Date(item.dt * 1000);
+        const dayKey = date.toLocaleDateString();
+        
+        if (!dailyForecasts[dayKey]) {
+            dailyForecasts[dayKey] = {
+                date,
+                temps: [],
+                weather: item.weather[0],
+                list: []
+            };
+        }
+        
+        dailyForecasts[dayKey].temps.push(item.main.temp);
+        dailyForecasts[dayKey].list.push(item);
+    });
+    
+    // Get next 5 days (skip today)
+    const days = Object.values(dailyForecasts).slice(1, 6);
+    
+    days.forEach((day, index) => {
+        const maxTemp = Math.round(Math.max(...day.temps));
+        const minTemp = Math.round(Math.min(...day.temps));
         
         const dayItem = document.createElement('div');
-        dayItem.className = 'daily-item';
+        dayItem.className = 'daily-item animate__animated animate__fadeIn';
+        dayItem.style.animationDelay = `${index * 0.1}s`;
         dayItem.innerHTML = `
-            <div>${formatDay(dayDate)}</div>
-            <img src="${config.iconBaseUrl}${dayData.weather[0].icon}.png" alt="${dayData.weather[0].description}">
-            <div class="daily-temp">
-                <span>${Math.round(dayData.temp.max)}°</span>
-                <span class="text-light">${Math.round(dayData.temp.min)}°</span>
+            <div class="day">${formatDay(day.date)}</div>
+            <img src="${config.iconBaseUrl}${day.weather.icon}.png" 
+                 alt="${day.weather.description}"
+                 class="animate__animated animate__pulse">
+            <div class="temps">
+                <span class="max-temp">${maxTemp}°</span>
+                <span class="min-temp">${minTemp}°</span>
             </div>
         `;
         elements.dailyContainer.appendChild(dayItem);
-    }
+    });
 }
 
-function updateAdditionalData(currentData) {
-    // UV Index
-    elements.uvIndex.textContent = Math.round(currentData.uvi);
-    setUvIndexRisk(currentData.uvi);
+function updateAdditionalData() {
+    const current = appState.currentData;
     
-    // Visibility (convert meters to miles)
-    const visibilityMiles = (currentData.visibility / 1609.34).toFixed(1);
-    elements.visibility.textContent = visibilityMiles;
+    // UV Index (simulated since not in free API)
+    const uvIndex = Math.random() * 10 + 1; // Random between 1-11 for demo
+    elements.uvIndex.textContent = uvIndex.toFixed(1);
+    setUvIndex(uvIndex);
+    
+    // Visibility
+    const visibilityKm = (current.visibility / 1000).toFixed(1);
+    elements.visibility.textContent = visibilityKm;
+    setVisibilityDescription(visibilityKm);
     
     // Sunrise/Sunset
-    const sunriseTime = new Date(currentData.sunrise * 1000);
-    const sunsetTime = new Date(currentData.sunset * 1000);
+    const sunriseTime = new Date(current.sys.sunrise * 1000);
+    const sunsetTime = new Date(current.sys.sunset * 1000);
     elements.sunrise.textContent = formatTime(sunriseTime);
     elements.sunset.textContent = formatTime(sunsetTime);
 }
 
-function setUvIndexRisk(uvi) {
-    const uvRiskElement = elements.uvIndex.nextElementSibling;
+function setUvIndex(uvi) {
     let riskLevel = '';
-    let bgColor = '';
+    let riskColor = '';
+    let percentage = (uvi / 11) * 100;
     
     if (uvi < 3) {
         riskLevel = 'Low';
-        bgColor = '#2ecc71';
+        riskColor = '#4cc9f0';
     } else if (uvi < 6) {
         riskLevel = 'Moderate';
-        bgColor = '#f39c12';
+        riskColor = '#4361ee';
     } else if (uvi < 8) {
         riskLevel = 'High';
-        bgColor = '#e74c3c';
+        riskColor = '#7209b7';
     } else if (uvi < 11) {
         riskLevel = 'Very High';
-        bgColor = '#9b59b6';
+        riskColor = '#f72585';
     } else {
         riskLevel = 'Extreme';
-        bgColor = '#e91e63';
+        riskColor = '#d90429';
     }
     
-    uvRiskElement.textContent = riskLevel;
-    uvRiskElement.style.backgroundColor = bgColor;
+    elements.uvRisk.textContent = riskLevel;
+    elements.uvRisk.style.backgroundColor = riskColor;
+    elements.progressBar.style.width = `${percentage}%`;
+    elements.progressBar.style.background = riskColor;
 }
 
-// Location functions
+function setVisibilityDescription(visibility) {
+    let desc = '';
+    if (visibility > 10) desc = 'Perfect visibility';
+    else if (visibility > 5) desc = 'Good visibility';
+    else if (visibility > 2) desc = 'Moderate visibility';
+    else desc = 'Poor visibility';
+    
+    elements.visibilityDesc.textContent = desc;
+}
+
+function setWeatherTheme(weatherCondition) {
+    const app = document.querySelector('.weather-app');
+    const bgAnimation = document.querySelector('.bg-animation');
+    
+    // Remove previous weather classes
+    app.className = 'weather-app';
+    bgAnimation.className = 'bg-animation';
+    
+    // Add class based on weather condition
+    switch(weatherCondition.toLowerCase()) {
+        case 'clear':
+            app.classList.add('clear-sky');
+            bgAnimation.classList.add('clear-animation');
+            break;
+        case 'clouds':
+            app.classList.add('cloudy');
+            bgAnimation.classList.add('cloudy-animation');
+            break;
+        case 'rain':
+            app.classList.add('rainy');
+            bgAnimation.classList.add('rainy-animation');
+            break;
+        case 'snow':
+            app.classList.add('snowy');
+            bgAnimation.classList.add('snowy-animation');
+            break;
+        case 'thunderstorm':
+            app.classList.add('stormy');
+            bgAnimation.classList.add('stormy-animation');
+            break;
+        default:
+            app.classList.add('default-weather');
+    }
+}
+
 function searchLocation() {
     const location = elements.locationInput.value.trim();
     if (location) {
         fetchWeatherByLocation(location);
     } else {
-        alert('Please enter a location');
+        showError('Please enter a location');
     }
 }
 
@@ -211,7 +310,7 @@ function getCurrentLocationWeather() {
                 try {
                     const { latitude, longitude } = position.coords;
                     const response = await fetch(
-                        `${config.baseUrl}weather?lat=${latitude}&lon=${longitude}&units=${config.units}&appid=${config.apiKey}`
+                        `${config.baseUrl}weather?lat=${latitude}&lon=${longitude}&units=${appState.units}&appid=${config.apiKey}`
                     );
                     
                     if (!response.ok) {
@@ -223,25 +322,24 @@ function getCurrentLocationWeather() {
                     fetchWeatherByLocation(`${data.name},${data.sys.country}`);
                 } catch (error) {
                     console.error('Error fetching location weather:', error);
-                    alert('Failed to get weather for your location');
+                    showError('Failed to get weather for your location');
                 } finally {
                     showLoading(false);
                 }
             },
             (error) => {
                 console.error('Geolocation error:', error);
-                alert('Location access denied. Please enable location services.');
+                showError('Location access denied. Please enable location services.');
                 showLoading(false);
             }
         );
     } else {
-        alert('Geolocation is not supported by your browser');
+        showError('Geolocation is not supported by your browser');
     }
 }
 
-// Unit conversion
 function switchUnits(unitSystem) {
-    config.units = unitSystem;
+    appState.units = unitSystem;
     
     if (unitSystem === 'imperial') {
         elements.unitF.classList.add('active');
@@ -251,15 +349,40 @@ function switchUnits(unitSystem) {
         elements.unitC.classList.add('active');
     }
     
-    const currentLocation = elements.currentCity.textContent;
-    if (currentLocation) {
-        fetchWeatherByLocation(currentLocation.split(',')[0].trim());
+    if (appState.lastLocation) {
+        fetchWeatherByLocation(appState.lastLocation.split(',')[0].trim());
     }
 }
 
-// UI Helpers
+function updateLastUpdated() {
+    const now = new Date();
+    elements.lastUpdated.textContent = `Updated: ${formatTime(now)}`;
+}
+
 function showLoading(show) {
-    elements.loadingOverlay.style.display = show ? 'flex' : 'none';
+    if (show) {
+        elements.loadingOverlay.classList.add('active');
+    } else {
+        elements.loadingOverlay.classList.remove('active');
+    }
+}
+
+function showError(message) {
+    const errorEl = document.createElement('div');
+    errorEl.className = 'error-message animate__animated animate__fadeIn';
+    errorEl.innerHTML = `
+        <div class="error-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(errorEl);
+    
+    setTimeout(() => {
+        errorEl.classList.add('animate__fadeOut');
+        setTimeout(() => errorEl.remove(), 300);
+    }, 3000);
 }
 
 // Formatting functions
