@@ -6,12 +6,12 @@
     --accent: #f72585;
     --dark: #1a1a2e;
     --light: #f8f9fa;
-    --text: #2b2d42;
+    --text: #7b80bf;
     --text-light: #8d99ae;
     --card-bg: rgba(255, 255, 255, 0.9);
     --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     --border-radius: 16px;
-    --transition: all 0.3s ease;
+    --transition: all 0.2s ease;
 }
 
 * {

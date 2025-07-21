@@ -39,7 +39,7 @@ let appState = {
     currentData: null,
     forecastData: null,
     units: config.units,
-    lastLocation: 'New York'
+    lastLocation: 'Peshawar'
 };
 
 // Initialize the app
