@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <header class="header">
+            <div class="app-title">
+                <i class="fas fa-coins"></i>
+                <h1>Wealth Tracker</h1>
+            </div>
+            <div class="total-balance">
+                <h3><i class="fas fa-balance-scale"></i> Your Balance</h3>
+                <p id="balance">$0.00</p>
+            </div>
+            <div class="inc-exp-container">
+                <div class="inc-box">
+                    <h4><i class="fas fa-arrow-up"></i> Income</h4>
+                    <p id="money-plus" class="money plus">+$0.00</p>
+                </div>
+                <div class="exp-box">
+                    <h4><i class="fas fa-arrow-down"></i> Expense</h4>
+                    <p id="money-minus" class="money minus">-$0.00</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="transaction-section glass-card">
+                <div class="section-header">
+                    <h3><i class="fas fa-exchange-alt"></i> Transactions</h3>
+                    <button id="clear-all" class="btn-small danger"><i class="fas fa-trash"></i> Clear All</button>
+                </div>
+                <div class="transactions" id="transactions">
+                    <div class="empty-state">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <p>No transactions yet</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section glass-card">
+                <h3><i class="fas fa-plus-circle"></i> Add Transaction</h3>
+                <form id="form">
+                    <div class="form-group">
+                        <label for="text"><i class="fas fa-pen"></i> Description</label>
+                        <input type="text" id="text" placeholder="Dinner at restaurant..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount"><i class="fas fa-dollar-sign"></i> Amount</label>
+                        <input type="number" id="amount" placeholder="Enter amount..." required>
+                        <small>Negative for expense, positive for income</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="category"><i class="fas fa-tags"></i> Category</label>
+                        <select id="category" required>
+                            <option value="">Select a category</option>
+                            <option value="food"><i class="fas fa-utensils"></i> Food</option>
+                            <option value="transportation"><i class="fas fa-car"></i> Transportation</option>
+                            <option value="housing"><i class="fas fa-home"></i> Housing</option>
+                            <option value="entertainment"><i class="fas fa-gamepad"></i> Entertainment</option>
+                            <option value="shopping"><i class="fas fa-shopping-bag"></i> Shopping</option>
+                            <option value="salary"><i class="fas fa-money-check"></i> Salary</option>
+                            <option value="freelance"><i class="fas fa-laptop-code"></i> Freelance</option>
+                            <option value="investment"><i class="fas fa-chart-line"></i> Investment</option>
+                            <option value="health"><i class="fas fa-heartbeat"></i> Health</option>
+                            <option value="education"><i class="fas fa-graduation-cap"></i> Education</option>
+                            <option value="other"><i class="fas fa-ellipsis-h"></i> Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date"><i class="fas fa-calendar-alt"></i> Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <button class="btn" type="submit">
+                        <i class="fas fa-plus"></i> Add Transaction
+                    </button>
+                </form>
+            </section>
+
+            <section class="analytics-section glass-card">
+                <h3><i class="fas fa-chart-pie"></i> Analytics</h3>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="monthly">Monthly</button>
+                    <button class="tab-btn" data-tab="category">Categories</button>
+                </div>
+                <div class="tab-content active" id="monthly-tab">
+                    <div class="chart-container">
+                        <canvas id="chart"></canvas>
+                    </div>
+                </div>
+                <div class="tab-content" id="category-tab">
+                    <div class="chart-container">
+                        <canvas id="pie-chart"></canvas>
+                    </div>
+                    <div class="category-breakdown" id="category-breakdown">
+                        <!-- Category breakdown will be added here dynamically -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Include Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include our JS file -->
+    <script src="js/app.js"></script>
+</body>
+</html>
