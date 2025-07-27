@@ -1,0 +1,94 @@
+/* style.css */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('../assets/images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+.quiz-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 5vh auto;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease-in-out;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #1e1e2f;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: fadeInUp 0.5s ease;
+}
+
+ul li:hover {
+  background-color: #3e3e5a;
+}
+
+ul li.correct {
+  background-color: #2ecc71;
+}
+
+ul li.wrong {
+  background-color: #e74c3c;
+}
+
+button {
+  background-color: #3498db;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+#result-box.hidden {
+  display: none;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 1s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Quiz App</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="question-box" class="animate-fade-in">
+      <h2 id="question">Loading...</h2>
+      <ul id="options">
+        <!-- Options injected by JS -->
+      </ul>
+    </div>
+    <div class="quiz-footer">
+      <button id="next-btn">Next</button>
+      <div id="progress">Question <span id="current">1</span> of <span id="total">5</span></div>
+    </div>
+    <div id="result-box" class="hidden animate-slide-in">
+      <h2>Quiz Completed</h2>
+      <p id="score"></p>
+      <button onclick="location.reload()">Try Again</button>
+    </div>
+  </div>
+
+  <audio id="correct-sound" src="assets/audio/correct.mp3"></audio>
+  <audio id="wrong-sound" src="assets/audio/wrong.mp3"></audio>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
