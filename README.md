@@ -36,8 +36,8 @@ Each project here is designed for **2–5 hours** of focused practice, perfect f
 | 4 | Pomodoro Timer | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/4_Pomodoro_Timer) |
 | 5 | Weather App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/5_Weather_App) |
 | 6 | QR Code Generator | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/6_QR_Code_Generator) |
-| 7 | Expense Tracker | Coming Soon |
-| 8 | Quiz App | Coming Soon |
+| 7 | Expense Tracker | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/7_Expense_Tracker/) |
+| 8 | Quiz App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/8_Quiz_App/) |
 | 9 | Drum Kit | Coming Soon |
 | 10 | Notes App | Coming Soon |
 | 11 | Image Slider | Coming Soon |
