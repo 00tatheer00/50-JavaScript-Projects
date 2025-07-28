@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Notes App</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>STH Notes</h1>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="icon">🌓</span>
+                <span>Toggle Theme</span>
+            </button>
+        </header>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search notes...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <button class="add-note-btn" id="addNoteBtn">
+            <span class="icon">+</span>
+            <span>Add New Note</span>
+        </button>
+
+        <div id="pinnedNotesContainer" class="pinned-notes" style="display: none;">
+            <h2 class="section-title">
+                <span class="icon">📌</span>
+                <span>Pinned Notes</span>
+            </h2>
+            <div class="notes-grid" id="pinnedNotesGrid"></div>
+        </div>
+
+        <div id="allNotesContainer">
+            <h2 class="section-title">
+                <span class="icon">📝</span>
+                <span>All Notes</span>
+            </h2>
+            <div class="notes-grid" id="notesGrid"></div>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+            <div class="empty-state-icon">📋</div>
+            <div class="empty-state-text">No notes yet. Create your first note!</div>
+            <button class="add-note-btn" id="emptyStateAddBtn">
+                <span class="icon">+</span>
+                <span>Add Note</span>
+            </button>
+        </div>
+
+        <!-- Note Modal -->
+        <div class="modal" id="noteModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalTitle">Add New Note</h3>
+                    <button class="close-btn" id="closeModalBtn">&times;</button>
+                </div>
+                <form id="noteForm">
+                    <input type="hidden" id="noteId">
+                    <div class="form-group">
+                        <label for="noteTitle" class="form-label">Title</label>
+                        <input type="text" class="form-input" id="noteTitle" placeholder="Enter note title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="noteContent" class="form-label">Content</label>
+                        <textarea class="form-textarea" id="noteContent" placeholder="Enter your note content..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Color</label>
+                        <div class="color-options">
+                            <div class="color-option selected" data-color="#ffffff" style="background-color: #ffffff;"></div>
+                            <div class="color-option" data-color="#f8d7da" style="background-color: #f8d7da;"></div>
+                            <div class="color-option" data-color="#fff3cd" style="background-color: #fff3cd;"></div>
+                            <div class="color-option" data-color="#d1e7dd" style="background-color: #d1e7dd;"></div>
+                            <div class="color-option" data-color="#cfe2ff" style="background-color: #cfe2ff;"></div>
+                            <div class="color-option" data-color="#e2d9f3" style="background-color: #e2d9f3;"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div class="modal" id="deleteModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Delete Note</h3>
+                    <button class="close-btn" id="closeDeleteModalBtn">&times;</button>
+                </div>
+                <p>Are you sure you want to delete this note? This action cannot be undone.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast"></div>
+    </div>
+
+   <script src="./script.js"></script>
+</body>
+</html>
