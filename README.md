@@ -39,7 +39,7 @@ Each project here is designed for **2–5 hours** of focused practice, perfect f
 | 7 | Expense Tracker | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/7_Expense_Tracker/) |
 | 8 | Quiz App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/8_Quiz_App/) |
 | 9 | Drum Kit | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/9_Drum_Kit/) |
-| 10 | Notes App | Coming Soon |
+| 10 | Notes App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/10_Notes_App/) |
 | 11 | Image Slider | Coming Soon |
 | 12 | Stopwatch | Coming Soon |
 | 13 | Countdown Timer | Coming Soon |
