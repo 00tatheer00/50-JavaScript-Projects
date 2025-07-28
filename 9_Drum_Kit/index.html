@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Drums - Professional Drum Kit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>STH DRUMS</h1>
+            <div class="controls">
+                <button id="theme-toggle" class="control-btn">🌓</button>
+                <div class="volume-control">
+                    <label for="master-volume">Master</label>
+                    <input type="range" id="master-volume" min="0" max="1" step="0.01" value="0.7">
+                </div>
+            </div>
+        </header>
+
+        <main class="drum-machine">
+            <div class="drum-pad" data-key="81" data-sound="kick">
+                <span>Q</span>
+                <p>Kick</p>
+            </div>
+            <div class="drum-pad" data-key="87" data-sound="snare">
+                <span>W</span>
+                <p>Snare</p>
+            </div>
+            <div class="drum-pad" data-key="69" data-sound="hihat">
+                <span>E</span>
+                <p>Hi-Hat</p>
+            </div>
+            <div class="drum-pad" data-key="65" data-sound="tom1">
+                <span>A</span>
+                <p>Tom 1</p>
+            </div>
+            <div class="drum-pad" data-key="83" data-sound="tom2">
+                <span>S</span>
+                <p>Tom 2</p>
+            </div>
+            <div class="drum-pad" data-key="68" data-sound="crash">
+                <span>D</span>
+                <p>Crash</p>
+            </div>
+            <div class="drum-pad" data-key="90" data-sound="ride">
+                <span>Z</span>
+                <p>Ride</p>
+            </div>
+            <div class="drum-pad" data-key="88" data-sound="clap">
+                <span>X</span>
+                <p>Clap</p>
+            </div>
+            <div class="drum-pad" data-key="67" data-sound="percussion">
+                <span>C</span>
+                <p>Perc</p>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <div class="recorder">
+                <button id="record-btn" class="control-btn">⏺</button>
+                <button id="play-btn" class="control-btn" disabled>▶️</button>
+                <button id="clear-btn" class="control-btn" disabled>✖</button>
+            </div>
+            <div class="bpm-control">
+                <label for="bpm">BPM: <span id="bpm-value">120</span></label>
+                <input type="range" id="bpm" min="60" max="200" value="120">
+            </div>
+        </footer>
+    </div>
+
+    <audio id="kick" src="./sounds/kick.mp3"></audio>
+    <audio id="snare" src="./sounds/snare.mp3"></audio>
+    <audio id="hihat" src="./sounds/hihat.mp3"></audio>
+    <audio id="tom1" src="./sounds/tom1.mp3"></audio>
+    <audio id="tom2" src="./sounds/tom2.mp3"></audio>
+    <audio id="crash" src="./sounds/crash.mp3"></audio>
+    <audio id="ride" src="./sounds/ride.mp3"></audio>
+    <audio id="clap" src="./sounds/clap.mp3"></audio>
+    <audio id="percussion" src="./sounds/percussion.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
