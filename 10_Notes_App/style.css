@@ -11,7 +11,7 @@
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
 }
-
+/* theme */
 [data-theme="dark"] {
     --primary-color: #4895ef;
     --secondary-color: #4361ee;

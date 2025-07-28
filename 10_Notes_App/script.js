@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const themeToggle = document.getElementById('themeToggle');
     const toast = document.getElementById('toast');
 
-    // Color options
+    // Color options yahan
     const colorOptions = document.querySelectorAll('.color-option');
     let selectedColor = '#ffffff';
 
