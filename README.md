@@ -30,17 +30,17 @@ Each project here is designed for **2–5 hours** of focused practice, perfect f
 
 | # | Project Name | Live Demo |
 |---|-------------|-----------|
-| 1 | Digital Clock | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/1_Digital_Clock/) |
-| 2 | Calculator | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/2_Calculator) |
-| 3 | Todo App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/3_Todo_App) |
-| 4 | Pomodoro Timer | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/4_Pomodoro_Timer) |
-| 5 | Weather App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/5_Weather_App) |
-| 6 | QR Code Generator | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/6_QR_Code_Generator) |
-| 7 | Expense Tracker | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/7_Expense_Tracker/) |
-| 8 | Quiz App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/8_Quiz_App/) |
-| 9 | Drum Kit | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/9_Drum_Kit/) |
+| 1 | Digital Clock | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/01_Digital_Clock/) |
+| 2 | Calculator | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/02_Calculator) |
+| 3 | Todo App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/03_Todo_App) |
+| 4 | Pomodoro Timer | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/04_Pomodoro_Timer) |
+| 5 | Weather App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/05_Weather_App) |
+| 6 | QR Code Generator | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/06_QR_Code_Generator) |
+| 7 | Expense Tracker | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/07_Expense_Tracker/) |
+| 8 | Quiz App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/08_Quiz_App/) |
+| 9 | Drum Kit | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/09_Drum_Kit/) |
 | 10 | Notes App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/10_Notes_App/) |
-| 11 | Image Slider | Coming Soon |
+| 11 | Image Slider | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/11_Image_Slider/) |
 | 12 | Stopwatch | Coming Soon |
 | 13 | Countdown Timer | Coming Soon |
 | 14 | Background Color Switcher | Coming Soon |
