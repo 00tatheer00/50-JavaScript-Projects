@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Stopwatch</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/themes.css">
+    <link rel="stylesheet" href="./styles/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container" data-theme="dark">
+        <header class="app-header">
+            <h1>QUANTUM CHRONO Tatheer</h1>
+            <div class="theme-switcher">
+                <button class="theme-btn" data-theme="light"><i class="fas fa-sun"></i></button>
+                <button class="theme-btn" data-theme="dark"><i class="fas fa-moon"></i></button>
+                <button class="theme-btn" data-theme="professional"><i class="fas fa-briefcase"></i></button>
+            </div>
+        </header>
+
+        <main class="stopwatch-container">
+            <div class="time-display">
+                <span class="hours">00</span>:<span class="minutes">00</span>:<span class="seconds">00</span>.<span
+                    class="milliseconds">000</span>
+            </div>
+
+            <div class="controls">
+                <button class="btn start-btn"><i class="fas fa-play"></i> Start</button>
+                <button class="btn pause-btn" disabled><i class="fas fa-pause"></i> Pause</button>
+                <button class="btn lap-btn" disabled><i class="fas fa-flag"></i> Lap</button>
+                <button class="btn reset-btn"><i class="fas fa-undo"></i> Reset</button>
+            </div>
+
+            <div class="laps-container">
+                <h2>Lap Times <span class="lap-count">(0)</span></h2>
+                <div class="laps-header">
+                    <span>#</span>
+                    <span>Lap Time</span>
+                    <span>Split Time</span>
+                    <span>Actions</span>
+                </div>
+                <div class="laps-list"></div>
+                <div class="lap-stats">
+                    <div>Fastest: <span class="fastest-lap">--:--.---</span></div>
+                    <div>Slowest: <span class="slowest-lap">--:--.---</span></div>
+                    <div>Average: <span class="average-lap">--:--.---</span></div>
+                </div>
+                <div class="export-actions">
+                    <button class="btn export-json"><i class="fas fa-file-code"></i> Export JSON</button>
+                    <button class="btn export-csv"><i class="fas fa-file-csv"></i> Export CSV</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Advanced Stopwatch with precision timing | Keyboard Shortcuts:
+                <span>Space=Start/Pause</span>,
+                <span>L=Lap</span>,
+                <span>R=Reset</span>
+            </p>
+        </footer>
+    </div>
+
+    <script type="module" src="./scripts/timer.js"></script>
+    <script type="module" src="./scripts/laps.js"></script>
+    <script type="module" src="./scripts/ui.js"></script>
+    <script type="module" src="./scripts/storage.js"></script>
+    <script type="module" src="./scripts/export.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+
+</html>

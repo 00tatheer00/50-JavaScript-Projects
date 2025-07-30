@@ -1,0 +1,53 @@
+/* Button pulse animation for start button */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(46, 125, 50, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+}
+
+.start-btn.active {
+    animation: pulse 1.5s infinite;
+}
+
+/* Time display animation when running */
+.time-display.running {
+    text-shadow: 0 0 15px rgba(79, 195, 247, 0.5);
+    transition: text-shadow 0.3s ease;
+}
+
+/* Lap item entry animation */
+@keyframes lapEntry {
+    from { 
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lap-item {
+    animation: lapEntry 0.3s ease-out forwards;
+}
+
+/* Theme transition */
+.container {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Blink animation for paused state */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.time-display.paused {
+    animation: blink 1.5s infinite;
+}
+
+/* Button press effect */
+.btn:active {
+    transform: translateY(1px) !important;
+}
