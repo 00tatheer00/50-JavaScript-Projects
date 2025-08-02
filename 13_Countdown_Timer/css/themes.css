@@ -1,0 +1,58 @@
+/* Light Theme */
+[data-theme="light"] {
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .timer-settings {
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+[data-theme="light"] .progress-ring__circle-bg {
+    stroke: #e0e0e0;
+}
+
+/* Professional Theme */
+[data-theme="professional"] {
+    --primary-color: #2c3e50;
+    --bg-color: #f0f2f5;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --border-color: #d1d5db;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="professional"] .app-header h1 {
+    background: linear-gradient(90deg, #2c3e50, #4ca1af);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+[data-theme="professional"] .progress-ring__circle-bg {
+    stroke: #e0e0e0;
+}
+
+[data-theme="professional"] .btn-theme.active {
+    background-color: #2c3e50;
+}
+
+[data-theme="professional"] .btn-mode.active {
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+}
+
+/* Animations for theme switching */
+.container {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.timer-settings {
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.progress-ring__circle-bg {
+    transition: stroke 0.5s ease;
+}

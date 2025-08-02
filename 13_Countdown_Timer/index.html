@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Countdown | Professional Timer</title>
+    <meta name="description" content="Advanced countdown timer with professional features">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- <link rel="stylesheet" href="css/themes.css"> -->
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container" data-theme="dark">
+        <header class="app-header">
+            <h1>Quantum Countdown</h1>
+            <div class="theme-switcher">
+                <!-- <button class="btn-theme" data-theme="light"><i class="fas fa-sun"></i></button> -->
+                <button class="btn-theme active" data-theme="dark"><i class="fas fa-moon"></i></button>
+                <!-- <button class="btn-theme" data-theme="professional"><i class="fas fa-briefcase"></i></button> -->
+            </div>
+        </header>
+
+        <main class="timer-container">
+            <div class="timer-display">
+                <div class="time" id="time">25:00</div>
+                <div class="progress-ring">
+                    <svg width="300" height="300" viewBox="0 0 300 300">
+                        <circle class="progress-ring__circle-bg" cx="150" cy="150" r="140" />
+                        <circle class="progress-ring__circle" cx="150" cy="150" r="140" />
+                    </svg>
+                </div>
+                <div class="timer-controls">
+                    <button id="startBtn" class="btn btn-primary"><i class="fas fa-play"></i> Start</button>
+                    <button id="pauseBtn" class="btn btn-secondary" disabled><i class="fas fa-pause"></i> Pause</button>
+                    <button id="resetBtn" class="btn btn-danger"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+            </div>
+
+            <div class="timer-settings">
+                <div class="mode-selector">
+                    <button class="btn-mode active" data-mode="countdown">Countdown</button>
+                    <button class="btn-mode" data-mode="pomodoro">Pomodoro</button>
+                    <button class="btn-mode" data-mode="intervals">Intervals</button>
+                </div>
+
+                <div class="time-input" id="countdown-settings">
+                    <div class="input-group">
+                        <label for="hours">Hours</label>
+                        <input type="number" id="hours" min="0" max="99" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="minutes">Minutes</label>
+                        <input type="number" id="minutes" min="0" max="59" value="25">
+                    </div>
+                    <div class="input-group">
+                        <label for="seconds">Seconds</label>
+                        <input type="number" id="seconds" min="0" max="59" value="0">
+                    </div>
+                </div>
+
+                <div class="pomodoro-settings" id="pomodoro-settings" style="display: none;">
+                    <div class="input-group">
+                        <label for="work-duration">Work (min)</label>
+                        <input type="number" id="work-duration" min="1" max="120" value="25">
+                    </div>
+                    <div class="input-group">
+                        <label for="short-break">Short Break (min)</label>
+                        <input type="number" id="short-break" min="1" max="30" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="long-break">Long Break (min)</label>
+                        <input type="number" id="long-break" min="1" max="60" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="pomodoro-rounds">Rounds</label>
+                        <input type="number" id="pomodoro-rounds" min="1" max="12" value="4">
+                    </div>
+                </div>
+
+                <div class="interval-settings" id="interval-settings" style="display: none;">
+                    <div class="input-group">
+                        <label for="work-interval">Work (sec)</label>
+                        <input type="number" id="work-interval" min="5" max="600" value="30">
+                    </div>
+                    <div class="input-group">
+                        <label for="rest-interval">Rest (sec)</label>
+                        <input type="number" id="rest-interval" min="5" max="300" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="interval-rounds">Rounds</label>
+                        <input type="number" id="interval-rounds" min="1" max="50" value="8">
+                    </div>
+                </div>
+
+                <div class="sound-settings">
+                    <h3>Sound Settings</h3>
+                    <div class="toggle-group">
+                        <label for="enable-sound">Enable Sounds</label>
+                        <label class="switch">
+                            <input type="checkbox" id="enable-sound" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <label for="tick-sound">Tick Tock</label>
+                        <label class="switch">
+                            <input type="checkbox" id="tick-sound">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <button id="savePresetBtn" class="btn btn-secondary"><i class="fas fa-save"></i> Save Preset</button>
+                <div class="presets" id="presets-container"></div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Quantum Countdown v1.0 | Professional Timer</p>
+            <div class="shortcut-hints">
+                <span>Space: Start/Pause</span>
+                <span>R: Reset</span>
+                <span>M: Mute</span>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/sounds.js"></script>
+    <script type="module" src="js/storage.js"></script>
+    <script type="module" src="js/timer.js"></script>
+    <script type="module" src="js/ui.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
