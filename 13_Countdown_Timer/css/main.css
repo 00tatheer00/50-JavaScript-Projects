@@ -353,12 +353,13 @@ input:checked + .slider:before {
     justify-content: space-between;
     align-items: center;
     font-size: 0.9rem;
-    color: #aaa;
+    color: #ffffff;
 }
 
 .shortcut-hints {
     display: flex;
     gap: 15px;
+    color: white;
 }
 
 /* Accessibility focus styles */
