@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro Background Switcher — Advanced</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Libraries (CDN) -->
+  <script src="https://unpkg.com/tinycolor2@1.6.0/dist/tinycolor-min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Pro Background Switcher</h1>
+      <p class="tagline">A surgical, corporate-grade background engine — gradients, solids, animated blends, scheduling, export/import and accessibility checks.</p>
+    </header>
+
+    <section class="controls" aria-label="Background Controls">
+      <div class="control-col">
+        <label>Mode
+          <select id="mode">
+            <option value="solid">Solid</option>
+            <option value="gradient">Gradient</option>
+            <option value="image">Image</option>
+            <option value="animated">Animated Gradient</option>
+          </select>
+        </label>
+
+        <label>Primary Color
+          <input id="colorA" type="color" value="#1e90ff" />
+        </label>
+
+        <label id="label-colorB">Secondary Color
+          <input id="colorB" type="color" value="#7b2ff7" />
+        </label>
+
+        <label id="label-angle">Angle
+          <input id="angle" type="range" min="0" max="360" value="45" />
+        </label>
+
+        <label id="label-type">Gradient Type
+          <select id="gtype">
+            <option value="linear">Linear</option>
+            <option value="radial">Radial</option>
+            <option value="conic">Conic</option>
+          </select>
+        </label>
+
+        <label id="label-speed" class="hidden">Animation Speed
+          <input id="animSpeed" type="range" min="1" max="10" value="4" />
+        </label>
+
+        <label>Background Image URL
+          <input id="bgImageUrl" placeholder="https://..." />
+        </label>
+
+        <div class="row">
+          <button id="applyBtn" class="btn primary">Apply</button>
+          <button id="randomBtn" class="btn">Randomize</button>
+          <button id="saveBtn" class="btn">Save Favorite</button>
+        </div>
+      </div>
+
+      <div class="control-col">
+        <div class="preview-box" id="preview" tabindex="0" aria-label="Live Preview">
+          <div class="preview-overlay">
+            <h2 id="previewTitle">Preview</h2>
+            <p id="contrastInfo" class="muted"></p>
+          </div>
+        </div>
+
+        <div class="presets">
+          <h3>Presets</h3>
+          <div id="presetList" class="preset-list" role="list"></div>
+        </div>
+
+        <div class="export">
+          <h3>Export / Import</h3>
+          <textarea id="exportData" placeholder="Exported JSON..." rows="4"></textarea>
+          <div class="row">
+            <button id="exportBtn" class="btn">Export</button>
+            <button id="importBtn" class="btn">Import</button>
+            <input id="importFile" type="file" accept=".json" style="display:none" />
+          </div>
+        </div>
+
+        <div class="tools">
+          <h3>Tools & Shortcuts</h3>
+          <ul>
+            <li><strong>Ctrl/Cmd + R</strong> — Randomize</li>
+            <li><strong>Ctrl/Cmd + S</strong> — Save Favorite</li>
+            <li><strong>Ctrl/Cmd + E</strong> — Export</li>
+          </ul>
+          <label><input type="checkbox" id="highContrastToggle" /> High contrast overlay</label>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <small>Built for designers & devs — persists to local storage. Keyboard-first. Accessible-forward.</small>
+    </footer>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

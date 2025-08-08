@@ -1,0 +1,201 @@
+:root {
+  --bg: #0b1221;
+  --card: #0f1724;
+  --muted: #9aa4b2;
+  --accent: #1e90ff;
+  --glass: rgba(255, 255, 255, 0.04);
+  --radius: 14px;
+  --gap: 16px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body,
+#root {
+  /* height: 100% */
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0035b0, #021440);
+  color: #dfe9f2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 32px;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.app-header {
+  background: var(--glass);
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 20px
+}
+
+.tagline {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted)
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 20px;
+}
+
+.control-col {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: var(--muted)
+}
+
+input[type="color"] {
+  width: 56px;
+  height: 34px;
+  border-radius: 6px;
+  border: 0;
+  padding: 0
+}
+
+input[type="range"] {
+  width: 100%
+}
+
+select,
+input[type="text"],
+textarea,
+input[type="url"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: transparent;
+  color: inherit
+}
+
+.row {
+  display: flex;
+  gap: 10px
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.03);
+  color: inherit;
+  cursor: pointer
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, var(--accent), #6e45e2);
+  box-shadow: 0 6px 18px rgba(30, 144, 255, 0.12)
+}
+
+.preview-box {
+  border-radius: 14px;
+  min-height: 250px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+.preview-overlay {
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(6px) saturate(1.2);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(255, 255, 255, 0.02));
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.preview-overlay h2 {
+  margin: 0
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px
+}
+
+.preset-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px
+}
+
+.preset-item {
+  padding: 8px;
+  border-radius: 8px;
+  min-width: 84px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 13px
+}
+
+.export textarea {
+  width: 100%;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.04)
+}
+
+.tools ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: var(--muted)
+}
+
+.hidden {
+  display: none
+}
+
+.app-footer {
+  opacity: 0.8;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: right
+}
+
+kbd {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  padding: 2px 6px
+}
