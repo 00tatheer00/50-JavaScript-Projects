@@ -41,9 +41,9 @@ Each project here is designed for **2–5 hours** of focused practice, perfect f
 | 9 | Drum Kit | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/09_Drum_Kit/) |
 | 10 | Notes App | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/10_Notes_App/) |
 | 11 | Image Slider | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/11_Image_Slider/) |
-| 12 | Stopwatch | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/12_stopwatch/) |
-| 13 | Countdown Timer | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/12_countdown_timer/) |
-| 14 | Background Color Switcher | Coming Soon |
+| 12 | Stopwatch | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/12_Stopwatch/) |
+| 13 | Countdown Timer | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/13_Countdown_Timer/) |
+| 14 | Background Color Switcher | [Live](https://00tatheer00.github.io/50-JavaScript-Projects/14_Background_Switcher/) |
 | 15 | Tip Calculator | Coming Soon |
 | 16 | BMI Calculator | Coming Soon |
 | 17 | Password Generator | Coming Soon |
