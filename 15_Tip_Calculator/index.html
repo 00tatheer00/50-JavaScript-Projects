@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro Tip Calculator — Advanced</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Libraries (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.6.0/tinycolor.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js" defer></script>
+</head>
+
+<body>
+  <main class="app" role="main">
+    <header class="app-header">
+      <h1>Tip Calculator</h1>
+      <p class="tagline">Precision tipping, enterprise polish — real-time, accessible, and exportable.</p>
+    </header>
+
+    <section class="panel inputs" aria-label="Tip inputs">
+      <div class="row">
+        <label class="field">Bill Amount
+          <input id="billAmount" inputmode="decimal" type="number" min="0" step="0.01" placeholder="0.00" />
+        </label>
+
+        <label class="field">Tip Percentage
+          <input id="tipPercent" type="number" min="0" step="0.1" value="15" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field">Number of People
+          <input id="peopleCount" type="number" min="1" step="1" value="1" />
+        </label>
+
+        <label class="field">Tax Percentage
+          <input id="taxPercent" type="number" min="0" step="0.1" value="0" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" id="includeTax" /> Include tax in tip calculation</label>
+        <label><input type="checkbox" id="roundTip" /> Round tip to nearest</label>
+        <label><input type="checkbox" id="roundTotal" /> Round total per person</label>
+      </div>
+
+      <div class="row actions">
+        <button id="calcBtn" class="btn primary">Calculate</button>
+        <button id="resetBtn" class="btn">Reset</button>
+        <button id="randomBtn" class="btn">Random Example</button>
+        <button id="savePresetBtn" class="btn">Save Preset</button>
+      </div>
+    </section>
+
+    <section class="panel results" aria-label="Results">
+      <div class="result-card">
+        <h2>Results</h2>
+        <div class="metrics">
+          <div class="metric">
+            <div class="label">Total Tip</div>
+            <div id="totalTip" class="value">0.00</div>
+          </div>
+          <div class="metric">
+            <div class="label">Total Bill</div>
+            <div id="totalBill" class="value">0.00</div>
+          </div>
+          <div class="metric">
+            <div class="label">Per Person</div>
+            <div id="perPerson" class="value">0.00</div>
+          </div>
+          <div class="metric small">
+            <div class="label">Tip / Person</div>
+            <div id="tipPerPerson" class="value">0.00</div>
+          </div>
+        </div>
+
+        <div class="currency">
+          <label>Currency
+            <select id="currencySelect">
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="PKR">PKR</option>
+              <option value="JPY">JPY</option>
+            </select>
+          </label>
+          <div id="rateInfo" class="muted"></div>
+        </div>
+
+        <div class="export">
+          <textarea id="exportData" rows="4" placeholder="Exported JSON..."></textarea>
+          <div class="row">
+            <button id="exportBtn" class="btn">Export</button>
+            <button id="importBtn" class="btn">Import</button>
+            <input id="importFile" type="file" accept=".json" style="display:none" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel presets" aria-label="Presets">
+      <h3>Presets</h3>
+      <div id="presetList" class="preset-list" role="list"></div>
+    </section>
+
+    <footer class="app-footer">
+      <small>Built for pros — persists to local storage. Keyboard: Ctrl/Cmd+R reset • Ctrl/Cmd+S save preset •
+        Ctrl/Cmd+E export</small>
+    </footer>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+
+</html>
