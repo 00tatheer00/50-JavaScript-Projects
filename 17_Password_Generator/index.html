@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Password Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-lock"></i> Password Generator</h1>
+            <p>Create strong and secure passwords with ease</p>
+        </div>
+
+        <div class="password-display">
+            <input type="text" class="password-field" id="password" readonly
+                placeholder="Your password will appear here">
+            <button class="copy-btn" id="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+        </div>
+
+        <div class="options">
+            <div class="option-group">
+                <div class="option-title">
+                    <span>Password Length</span>
+                    <span id="length-value">12</span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="6" max="30" value="12" class="slider" id="length-slider">
+                </div>
+            </div>
+
+            <div class="option-group">
+                <div class="option-title">
+                    <span>Character Types</span>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="uppercase" checked>
+                        Uppercase (A-Z)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="lowercase" checked>
+                        Lowercase (a-z)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="numbers" checked>
+                        Numbers (0-9)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="symbols">
+                        Symbols (!@#$)
+                    </label>
+                </div>
+            </div>
+
+            <div class="option-group">
+                <div class="option-title">
+                    <span>Password Strength</span>
+                </div>
+                <div class="strength-meter">
+                    <div class="strength-fill" id="strength-fill"></div>
+                </div>
+                <div class="strength-text" id="strength-text">Medium</div>
+            </div>
+
+            <button class="generate-btn" id="generate-btn"><i class="fas fa-key"></i> Generate Password</button>
+        </div>
+
+        <div class="history">
+            <div class="history-title">
+                <span>Recently Generated</span>
+                <span id="history-clear">Clear</span>
+            </div>
+            <div id="history-list">
+                <!-- History items will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Password copied to clipboard!</div>
+
+   <script src="./script.js"></script>
+</body>
+
+</html>
