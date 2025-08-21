@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional BMI Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>BMI Calculator</h1>
+            <p>Calculate your Body Mass Index and understand what it means for your health</p>
+        </header>
+
+        <main class="calculator-container">
+            <div class="input-section">
+                <div class="measurement-system">
+                    <button id="metric-btn" class="system-btn active">Metric (kg/cm)</button>
+                    <button id="imperial-btn" class="system-btn">Imperial (lbs/in)</button>
+                </div>
+
+                <div id="metric-inputs">
+                    <div class="input-group">
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" placeholder="Enter height" min="50" max="250">
+                    </div>
+                    <div class="input-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="Enter weight" min="10" max="300">
+                    </div>
+                </div>
+
+                <div id="imperial-inputs" class="hidden">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="feet">Height (feet)</label>
+                            <input type="number" id="feet" placeholder="Feet" min="3" max="8">
+                        </div>
+                        <div class="input-group">
+                            <label for="inches">Height (inches)</label>
+                            <input type="number" id="inches" placeholder="Inches" min="0" max="11">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="pounds">Weight (pounds)</label>
+                        <input type="number" id="pounds" placeholder="Enter weight" min="50" max="700">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" placeholder="Enter age" min="2" max="120">
+                </div>
+
+                <div class="gender-selection">
+                    <span>Gender</span>
+                    <div class="gender-options">
+                        <label class="gender-option">
+                            <input type="radio" name="gender" value="male" checked>
+                            <span class="radio-custom"></span>
+                            Male
+                        </label>
+                        <label class="gender-option">
+                            <input type="radio" name="gender" value="female">
+                            <span class="radio-custom"></span>
+                            Female
+                        </label>
+                    </div>
+                </div>
+
+                <button id="calculate-btn" class="calculate-btn">Calculate BMI</button>
+            </div>
+
+            <div class="result-section">
+                <div class="result-placeholder">
+                    <p>Your results will appear here</p>
+                </div>
+                <div class="bmi-result hidden">
+                    <h2>Your BMI</h2>
+                    <div class="bmi-value"><span id="bmi-number">23.4</span></div>
+                    <div class="bmi-category" id="bmi-category">Normal weight</div>
+
+                    <div class="bmi-scale">
+                        <div class="scale-labels">
+                            <span>Underweight</span>
+                            <span>Normal</span>
+                            <span>Overweight</span>
+                            <span>Obesity</span>
+                        </div>
+                        <div class="scale-visual">
+                            <div class="scale-range underweight"></div>
+                            <div class="scale-range normal"></div>
+                            <div class="scale-range overweight"></div>
+                            <div class="scale-range obesity"></div>
+                            <div class="scale-indicator" id="scale-indicator"></div>
+                        </div>
+                        <div class="scale-numbers">
+                            <span>&lt;18.5</span>
+                            <span>18.5-24.9</span>
+                            <span>25-29.9</span>
+                            <span>30+</span>
+                        </div>
+                    </div>
+
+                    <div class="health-advice">
+                        <h3>Health Advice</h3>
+                        <p id="health-advice-text">Maintain your current weight with a balanced diet and regular
+                            exercise.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="information-section">
+            <h2>About BMI</h2>
+            <p>Body Mass Index (BMI) is a measure of body fat based on height and weight that applies to adult men and
+                women. It is used as a screening tool to identify possible weight problems, but it is not a direct
+                measurement of body fat.</p>
+
+            <div class="bmi-categories">
+                <h3>BMI Categories:</h3>
+                <ul>
+                    <li><strong>Underweight:</strong> BMI less than 18.5</li>
+                    <li><strong>Normal weight:</strong> BMI 18.5 to 24.9</li>
+                    <li><strong>Overweight:</strong> BMI 25 to 29.9</li>
+                    <li><strong>Obesity:</strong> BMI 30 or greater</li>
+                </ul>
+            </div>
+
+            <p class="disclaimer">Note: BMI may not be accurate for athletes, pregnant women, the elderly, or children.
+            </p>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
